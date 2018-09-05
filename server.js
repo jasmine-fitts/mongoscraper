@@ -21,3 +21,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // Use express.static to serve the public folder as a static directory
 app.use(express.static("public"));
 
+//Connect to the Mongo DB
+mongoose.connect("mongodb://localhost/mongoscraper");
+
+
+
