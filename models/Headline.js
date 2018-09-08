@@ -1,22 +1,24 @@
-var monogoose = require("mongoose");
+var mongoose = require("mongoose");
 
-var Schema = monogoose.Schema;
+var Schema = mongoose.Schema;
 
-var ArticalSchema = new Schema({
-   title: {
-    type: String, 
-    required: true
-},
-   link: {
-    type: String,
-    required: true
-},
-    note: {
-        type: Schema.Types.ObjectId,
-        ref: "Note"
+var headlineSchema = new Schema({
+    headline: {
+        type: String, 
+        required: true, 
+        unique: true
+    },
+    summary: {
+        type: String,
+        required: true
+    },
+    date: String, 
+    saved: {
+        type: Boolean, 
+        default: false
     }
 });
 
-var Article = mongoose.model("Article", ArticalSchema);
+var Headline = mongoose.model("Headline", headlineSchema);
 
-module.exports = Article;
+module.exports = Headline;
