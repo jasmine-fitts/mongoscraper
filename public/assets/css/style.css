@@ -1,0 +1,55 @@
+html {
+    position: relative;
+    min-height: 100%;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+    margin-bottom: 80px;
+    background-image: url("../images/main-background.png");
+}
+
+.footer {
+    position: absolute;
+    bottom: 0%;
+    width: 100%;
+    height: 80px;
+    background-color: gray;
+    color: black;
+}
+
+.navbar {
+    margin-bottom: 0;
+}
+
+.jumbotron {
+    /*background-image: "../images/paper-stack.jpg";*/
+    position: relative;
+    width: 100%;
+    height: 500px;
+    padding: 0;
+}
+
+.jumbotron .overlay {
+    background-color: linear-gradient(#333 black);
+    position: absolute;
+    opacity: 0.7;
+    z-index: auto;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+}
+
+.jumbotron .background-image {
+    height: 100%;
+    background-image: url("../images/paper-stack.png");
+    background-size: cover;
+}
+
+.jumbotron .caption {
+    position: absolute;
+    top: 30%;
+    width: 100%;
+    text-align: center;
+}
