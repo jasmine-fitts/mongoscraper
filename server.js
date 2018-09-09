@@ -1,8 +1,8 @@
 var express = require("express");
 var mongoose = require("mongoose");
-var logger = require("morgan");
 var bodyParser = require("body-parser");
-var exphbs = require("express-handlebars");
+var expressHandlebars = require("express-handlebars");
+// var logger = require("morgan");
 
 
 //Scrapping tools
@@ -16,19 +16,23 @@ var PORT = process.env.PORT || 3000;
 
 var app = express();
 
-app.use(logger("dev"));
+// app.use(logger("dev"));
 
 app.use(bodyParser.urlencoded({
     extended: true
 }));
-
 app.use(express.static("public"));
+
+app.engine("handlebars", expressHandlebars({
+    defaultLayout: "main"
+}));
+app.set("view engine", "handlebars");
 
 
 var db = process.env.MONGODB_URI || "mongodb://localhost/mongoHeadlines";
 
-mongoose.Promise = Promise;
-mongoose.connect(MONGODB_URI);
+// mongoose.Promise = Promise;
+// mongoose.connect(MONGODB_URI);
 
 mongoose.connect(db, function(error) {
     if (error) {
@@ -39,10 +43,13 @@ mongoose.connect(db, function(error) {
     }
 });
 
+app.get("/", function(req, res) {
+    res.render("index");
+})
 
 app.get("/news-scrape", function(req, res) {
     //Grab the body of the html with request
-    axious.get("https://www.npr.org/sections/news").then(function(response) {
+    axios.get("https://www.npr.org/sections/news").then(function(response) {
         var $ = cheerio.load(response.data);
 
         $("h3.title").each(function(i, element) {
@@ -75,7 +82,7 @@ app.get("/news-scrape", function(req, res) {
 });
 
 app.get("/arts-scrape", function(req, res) {
-    axious.get("https://www.npr.org/sections/arts").then(function(response) {
+    axios.get("https://www.npr.org/sections/arts").then(function(response) {
         var $ = cheerio.load(response.data);
 
         $("h3.title").each(function(i, element) {
@@ -105,7 +112,7 @@ app.get("/arts-scrape", function(req, res) {
 });
 
 app.get("/music-scrape", function(req, res) {
-    axious.get("https://www.npr.org/sections/music").then(function(response) {
+    axios.get("https://www.npr.org/sections/music").then(function(response) {
         var $ = cheerio.load(response.data);
 
         $("h3.title").each(function(i, element) {
@@ -135,7 +142,7 @@ app.get("/music-scrape", function(req, res) {
 });
 
 app.get("/programs-scrape", function(req, res) {
-    axious.get("https://www.npr.org/sections/programs").then(function(response) {
+    axios.get("https://www.npr.org/sections/programs").then(function(response) {
         var $ = cheerio.load(response.data);
 
         $("h3.title").each(function(i, element) {
