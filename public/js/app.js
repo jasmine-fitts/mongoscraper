@@ -1,7 +1,7 @@
 $(document).ready(function() {
     $("#news").on("click", function(event) {
         event.preventDefault();
-    
+        
         $.ajax({
             method: "GET",
             url: "/news-scrape"
@@ -38,25 +38,12 @@ $(document).ready(function() {
         });
     });
     
-    $("#topics").on("click", function(event) {
+    $("#race").on("click", function(event) {
         event.preventDefault();
     
         $.ajax({
             method: "GET",
-            url: "/topics-scrape"
-        })
-        .then(function(data) {
-            console.log(data);
-            location.reload();
-        });
-    });
-    
-    $("#programs").on("click", function(event) {
-        event.preventDefault();
-    
-        $.ajax({
-            method: "GET",
-            url: "/programs-scrape"
+            url: "/race-scrape"
         })
         .then(function(data) {
             console.log(data);

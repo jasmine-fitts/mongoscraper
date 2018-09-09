@@ -112,7 +112,7 @@ app.get("/arts-scrape", function(req, res) {
 });
 
 app.get("/music-scrape", function(req, res) {
-    axios.get("https://www.npr.org/sections/music").then(function(response) {
+    axios.get("https://www.npr.org/music").then(function(response) {
         var $ = cheerio.load(response.data);
 
         $("h3.title").each(function(i, element) {
@@ -141,8 +141,8 @@ app.get("/music-scrape", function(req, res) {
     });
 });
 
-app.get("/programs-scrape", function(req, res) {
-    axios.get("https://www.npr.org/sections/programs").then(function(response) {
+app.get("/race-scrape", function(req, res) {
+    axios.get("https://www.npr.org/sections/codeswitch/").then(function(response) {
         var $ = cheerio.load(response.data);
 
         $("h3.title").each(function(i, element) {
@@ -180,7 +180,6 @@ app.get("/articles", function(req, res) {
         res.json(err);
     });
 });
-
 
 app.get("/articles/:id", function(req, res) {
   db.Article.findOne({ _id: req.params.id })
